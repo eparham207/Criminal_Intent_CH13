@@ -19,5 +19,8 @@
         android:name="com.parham.msu.criminal_intent_CH13.CrimeDetailFragment"
         android:label="CrimeDetailFragment"
         tools:layout="@layout/fragment_crime_detail">
+        <argument
+            android:name="crimeId"
+            app:argType="java.util.UUID" />
     </fragment>
 </navigation>

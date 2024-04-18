@@ -8,11 +8,12 @@ import android.text.format.DateFormat
 import androidx.recyclerview.widget.RecyclerView
 import com.parham.msu.criminal_intent_CH13.databinding.ListItemCrimeBinding
 import com.parham.msu.criminal_intent_CH13.databinding.ListItemCrimePoliceBinding
+import java.util.UUID
 
 class CrimeHolder(
     val binding: ListItemCrimeBinding
 ) : RecyclerView.ViewHolder(binding.root) {
-    fun bind(crime: Crime, onCrimeClicked: () -> Unit) {
+    fun bind(crime: Crime, onCrimeClicked: (crimeId: UUID) -> Unit) {
         binding.crimeTitle.text = crime.title
         val formattedDate = DateFormat.format("MMM dd, yyyy", crime.date)
         binding.crimeDate.text = formattedDate.toString()
@@ -23,7 +24,7 @@ class CrimeHolder(
                 "${crime.title} clicked!",
                 Toast.LENGTH_SHORT
             ).show()*/
-            onCrimeClicked()
+            onCrimeClicked(crime.id)
         }
         binding.crimeSolvedd.visibility = if(crime.isSolved) {
             View.VISIBLE
@@ -37,7 +38,7 @@ class CrimeHolder(
 
 class CrimeListAdapter(
     private val crimes: List<Crime>,
-    private val onCrimeClicked: () -> Unit) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
+    private val onCrimeClicked: (crimeId:UUID) -> Unit) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
     //Test New Code
     companion object {

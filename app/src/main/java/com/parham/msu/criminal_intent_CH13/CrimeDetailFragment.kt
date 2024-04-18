@@ -7,15 +7,18 @@ import android.view.ViewGroup
 import androidx.core.widget.doOnTextChanged
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.fragment.navArgs
 import com.parham.msu.criminal_intent_CH13.databinding.FragmentCrimeDetailBinding
 import java.util.Date
 import java.util.UUID
 
+private const val TAG = "CrimeDetailFragment"
 class CrimeDetailFragment : Fragment() {
 
     private lateinit var crimeListViewModel: CrimeListViewModel
     lateinit var crime: Crime
 
+    private val args: CrimeDetailFragmentArgs by navArgs()
     //private lateinit var binding: FragmentCrimeDetailBinding
     private var _binding: FragmentCrimeDetailBinding? = null
 
@@ -38,6 +41,7 @@ class CrimeDetailFragment : Fragment() {
             isSolved = false,
             //requiresPolice = false
         )
+        //Log.d(TAG, "The crime ID is: ${args.crimeId}")
     }
 
     override fun onCreateView(
