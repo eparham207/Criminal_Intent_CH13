@@ -9,5 +9,15 @@
         android:id="@+id/crimeListFragment"
         android:name="com.parham.msu.criminal_intent_CH13.CrimeListFragment"
         android:label="CrimeListFragment"
-        tools:layout="@layout/fragment_crime_list"/>
+        tools:layout="@layout/fragment_crime_list">
+        <action
+            android:id="@+id/show_crime_detail"
+            app:destination="@id/crimeDetailFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/crimeDetailFragment"
+        android:name="com.parham.msu.criminal_intent_CH13.CrimeDetailFragment"
+        android:label="CrimeDetailFragment"
+        tools:layout="@layout/fragment_crime_detail">
+    </ fragment>
 </navigation>
