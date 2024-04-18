@@ -12,18 +12,18 @@ import com.parham.msu.criminal_intent_CH13.databinding.ListItemCrimePoliceBindin
 class CrimeHolder(
     val binding: ListItemCrimeBinding
 ) : RecyclerView.ViewHolder(binding.root) {
-    fun bind(crime: Crime) {
+    fun bind(crime: Crime, onCrimeClicked: () -> Unit) {
         binding.crimeTitle.text = crime.title
-        //binding.crimeDate.text = crime.date.toString()
         val formattedDate = DateFormat.format("MMM dd, yyyy", crime.date)
         binding.crimeDate.text = formattedDate.toString()
 
         binding.root.setOnClickListener {
-            Toast.makeText(
+            /*Toast.makeText(
                 binding.root.context,
                 "${crime.title} clicked!",
                 Toast.LENGTH_SHORT
-            ).show()
+            ).show()*/
+            onCrimeClicked()
         }
         binding.crimeSolvedd.visibility = if(crime.isSolved) {
             View.VISIBLE
@@ -35,7 +35,9 @@ class CrimeHolder(
 }
 
 
-class CrimeListAdapter(private val crimes: List<Crime>) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
+class CrimeListAdapter(
+    private val crimes: List<Crime>,
+    private val onCrimeClicked: () -> Unit) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
     //Test New Code
     companion object {
@@ -61,7 +63,7 @@ class CrimeListAdapter(private val crimes: List<Crime>) : RecyclerView.Adapter<R
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
         val crime = crimes[position]
         when (holder) {
-            is CrimeHolder -> holder.bind(crime)
+            is CrimeHolder -> holder.bind(crime, onCrimeClicked)
             is CrimePoliceHolder -> holder.bind(crime)
         }
     }
