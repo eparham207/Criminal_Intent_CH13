@@ -12,11 +12,11 @@ import com.parham.msu.criminal_intent_CH13.databinding.FragmentCrimeDetailBindin
 import java.util.Date
 import java.util.UUID
 
-private const val TAG = "CrimeDetailFragment"
+//private const val TAG = "CrimeDetailFragment"
 class CrimeDetailFragment : Fragment() {
 
     private lateinit var crimeListViewModel: CrimeListViewModel
-    lateinit var crime: Crime
+    //lateinit var crime: Crime
 
     private val args: CrimeDetailFragmentArgs by navArgs()
     //private lateinit var binding: FragmentCrimeDetailBinding
@@ -27,7 +27,7 @@ class CrimeDetailFragment : Fragment() {
             "Cannot access binding because it is null. Is the view visible"
         }
 
-    override fun onCreate(savedInstanceState: Bundle?) {
+   /* override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
         crimeListViewModel =
@@ -42,7 +42,7 @@ class CrimeDetailFragment : Fragment() {
             //requiresPolice = false
         )
         //Log.d(TAG, "The crime ID is: ${args.crimeId}")
-    }
+    }*/
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -66,18 +66,18 @@ class CrimeDetailFragment : Fragment() {
 
                 //listener for edit text
                 crimeTitle.doOnTextChanged { text, _, _, _ ->
-                    crime = crime.copy(title = text.toString())
+                    //crime = crime.copy(title = text.toString())
                 }
                 //listener for button
 
                 crimeDate.apply {
-                    text = crime.date.toString()
+                   // text = crime.date.toString()
                     isEnabled = false
                 }
 
                 //listener for textbox changes
                 crimeSolved.setOnCheckedChangeListener { _, isChecked ->
-                    crime = crime.copy(isSolved = isChecked)
+                    //crime = crime.copy(isSolved = isChecked)
                 }
 
             }
