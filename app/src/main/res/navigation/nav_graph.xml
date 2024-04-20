@@ -22,5 +22,10 @@
         <argument
             android:name="crimeId"
             app:argType="java.util.UUID" />
+        <action
+            android:id="@+id/back_to_crime_list"
+            app:destination="@id/crimeListFragment"
+            app:popUpTo="@id/crimeListFragment"
+            app:popUpToInclusive="true" />
     </fragment>
 </navigation>

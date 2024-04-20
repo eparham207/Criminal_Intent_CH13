@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.activity.OnBackPressedCallback
 import androidx.core.widget.doOnTextChanged
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
@@ -11,6 +12,7 @@ import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
+import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.parham.msu.criminal_intent_CH13.databinding.FragmentCrimeDetailBinding
 import kotlinx.coroutines.flow.collect
@@ -33,10 +35,10 @@ class CrimeDetailFragment : Fragment() {
     private var _binding: FragmentCrimeDetailBinding? = null
 
 
-    private val binding
-        get() = checkNotNull(_binding) {
+    private val binding get() = _binding!!
+        /*get() = checkNotNull(_binding) {
             "Cannot access binding because it is null. Is the view visible"
-        }
+        }*/
 
     /*override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -68,6 +70,18 @@ class CrimeDetailFragment : Fragment() {
     //wiring up views in a fragment
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        val onBackPressedCallback = object : OnBackPressedCallback(true) {
+            override fun handleOnBackPressed() {
+                if (binding.crimeTitle.text.isBlank()) {
+                    binding.crimeTitle.error = "Please provide a title for the crime"
+                } else {
+                    findNavController().navigateUp()
+                }
+            }
+        }
+        requireActivity().onBackPressedDispatcher.addCallback(viewLifecycleOwner, onBackPressedCallback)
+
 
         //binding.contactPoliceButton.setOnClickListener {
             // When the "Contact Police" button is clicked, mark the crime as requiring police intervention
