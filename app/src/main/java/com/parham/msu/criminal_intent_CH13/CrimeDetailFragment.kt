@@ -32,27 +32,28 @@ class CrimeDetailFragment : Fragment() {
     //private lateinit var binding: FragmentCrimeDetailBinding
     private var _binding: FragmentCrimeDetailBinding? = null
 
+
     private val binding
         get() = checkNotNull(_binding) {
             "Cannot access binding because it is null. Is the view visible"
         }
 
-    /* override fun onCreate(savedInstanceState: Bundle?) {
+    override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
         crimeListViewModel =
             ViewModelProvider(requireActivity()).get(CrimeListViewModel::class.java)
 
 
-        crime = Crime(
+        /*crime = Crime(
             id = UUID.randomUUID(),
             title = "",
             date = Date(),
             isSolved = false,
             //requiresPolice = false
         )
-        //Log.d(TAG, "The crime ID is: ${args.crimeId}")
-    }*/
+        Log.d(TAG, "The crime ID is: ${args.crimeId}")*/
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -68,7 +69,7 @@ class CrimeDetailFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        binding.contactPoliceButton.setOnClickListener {
+        //binding.contactPoliceButton.setOnClickListener {
             // When the "Contact Police" button is clicked, mark the crime as requiring police intervention
             //crime.requiresPolice = true
 
@@ -99,7 +100,7 @@ class CrimeDetailFragment : Fragment() {
                 }
             }
 
-        }
+
 
     }
 
