@@ -20,42 +20,18 @@ import kotlinx.coroutines.launch
 import java.util.Date
 import java.util.UUID
 
-//private const val TAG = "CrimeDetailFragment"
 class CrimeDetailFragment : Fragment() {
-
-    private lateinit var crimeListViewModel: CrimeListViewModel
-    //lateinit var crime: Crime
 
     private val args: CrimeDetailFragmentArgs by navArgs()
     private val crimeDetailViewModel: CrimeDetailViewModel by viewModels {
         CrimeDetailViewModelFactory(args.crimeId)
     }
 
-    //private lateinit var binding: FragmentCrimeDetailBinding
     private var _binding: FragmentCrimeDetailBinding? = null
 
 
     private val binding get() = _binding!!
-        /*get() = checkNotNull(_binding) {
-            "Cannot access binding because it is null. Is the view visible"
-        }*/
 
-    /*override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-
-        crimeListViewModel =
-            ViewModelProvider(requireActivity()).get(CrimeListViewModel::class.java)
-
-
-        *//*crime = Crime(
-            id = UUID.randomUUID(),
-            title = "",
-            date = Date(),
-            isSolved = false,
-            //requiresPolice = false
-        )
-        Log.d(TAG, "The crime ID is: ${args.crimeId}")*//*
-    }*/
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -82,11 +58,6 @@ class CrimeDetailFragment : Fragment() {
         }
         requireActivity().onBackPressedDispatcher.addCallback(viewLifecycleOwner, onBackPressedCallback)
 
-
-        //binding.contactPoliceButton.setOnClickListener {
-            // When the "Contact Police" button is clicked, mark the crime as requiring police intervention
-            //crime.requiresPolice = true
-
             binding.apply {
 
                 //listener for edit text
@@ -94,12 +65,8 @@ class CrimeDetailFragment : Fragment() {
                     crimeDetailViewModel.updateCrime { oldCrime ->
                         oldCrime.copy(title = text.toString())
                     }
-                    //crime = crime.copy(title = text.toString())
                 }
-                //listener for button
-
                 crimeDate.apply {
-                    // text = crime.date.toString()
                     isEnabled = false
                 }
 
@@ -107,7 +74,6 @@ class CrimeDetailFragment : Fragment() {
                 crimeSolved.setOnCheckedChangeListener { _, isChecked ->
                     crimeDetailViewModel.updateCrime { oldCrime ->
                         oldCrime.copy(isSolved = isChecked) }
-                    //crime = crime.copy(isSolved = isChecked)
                 }
             }
 
