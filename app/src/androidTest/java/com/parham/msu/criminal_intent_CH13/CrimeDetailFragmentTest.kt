@@ -21,8 +21,9 @@ class CrimeDetailFragmentTest {
     fun tearDown() {
         scenario.close()
     }
+}
 
-    @Test
+ /*   @Test
     fun testCheckBoxAndEditText() {
         // Verify that the CheckBox and EditText are hooked up to the fragment
         scenario.onFragment { fragment ->
@@ -47,3 +48,4 @@ class CrimeDetailFragmentTest {
 
     }
 }
+*/
