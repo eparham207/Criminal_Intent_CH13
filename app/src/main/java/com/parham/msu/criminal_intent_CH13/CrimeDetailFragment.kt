@@ -38,22 +38,22 @@ class CrimeDetailFragment : Fragment() {
             "Cannot access binding because it is null. Is the view visible"
         }
 
-    override fun onCreate(savedInstanceState: Bundle?) {
+    /*override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
         crimeListViewModel =
             ViewModelProvider(requireActivity()).get(CrimeListViewModel::class.java)
 
 
-        /*crime = Crime(
+        *//*crime = Crime(
             id = UUID.randomUUID(),
             title = "",
             date = Date(),
             isSolved = false,
             //requiresPolice = false
         )
-        Log.d(TAG, "The crime ID is: ${args.crimeId}")*/
-    }
+        Log.d(TAG, "The crime ID is: ${args.crimeId}")*//*
+    }*/
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -77,6 +77,9 @@ class CrimeDetailFragment : Fragment() {
 
                 //listener for edit text
                 crimeTitle.doOnTextChanged { text, _, _, _ ->
+                    crimeDetailViewModel.updateCrime { oldCrime ->
+                        oldCrime.copy(title = text.toString())
+                    }
                     //crime = crime.copy(title = text.toString())
                 }
                 //listener for button
@@ -88,10 +91,13 @@ class CrimeDetailFragment : Fragment() {
 
                 //listener for textbox changes
                 crimeSolved.setOnCheckedChangeListener { _, isChecked ->
+                    crimeDetailViewModel.updateCrime { oldCrime ->
+                        oldCrime.copy(isSolved = isChecked) }
                     //crime = crime.copy(isSolved = isChecked)
                 }
-
             }
+
+
             viewLifecycleOwner.lifecycleScope.launch {
                 viewLifecycleOwner.lifecycle.repeatOnLifecycle(Lifecycle.State.STARTED) {
                     crimeDetailViewModel.crime.collect { crime ->
